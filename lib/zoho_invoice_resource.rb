@@ -15,5 +15,5 @@ module ZohoInvoiceResource
   autoload :UnderscoreKeys
   autoload :Util
 
-  autoload :CachedResource
+  autoload :CachedResourcePatch
 end

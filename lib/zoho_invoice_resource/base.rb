@@ -38,10 +38,12 @@ module ZohoInvoiceResource
 
       # For CachedResource
       def cached_resource(options={})
-        if defined?(CachedResource::Model) && self.include?(CachedResource::Model)
+        if defined?(::CachedResource::Model) && self.include?(::CachedResource::Model)
           super.tap do
             include CachedResourcePatch
           end
+        else
+          super
         end
       end
     end

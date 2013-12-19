@@ -1,6 +1,6 @@
-# Activeresource::ZohoInvoice
+# ActiveResource Zoho Invoice
 
-TODO: Write a gem description
+Zoho Invoice API accessor with ActiveResource
 
 ## Installation
 
@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    class Invoice < ZohoInvoiceResource::Invoice
+      self.auth_params = {
+        apikey:    'apikeyishere',
+        authtoken: 'authtokenishere',
+        scope:     'invoiceapi'
+      }
+    end
 
 ## Contributing
 

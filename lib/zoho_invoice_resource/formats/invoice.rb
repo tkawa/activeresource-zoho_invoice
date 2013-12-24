@@ -18,12 +18,11 @@ module ZohoInvoiceResource
             'Price' => invoice_item.price
           }
           data['InvoiceItems'] << item
-        end
-        data.delete('InvoiceItems') if data['InvoiceItems'].empty?
+        end if record.invoice_items
         data['CustomFields']['CustomField1'] = record.custom_fields.custom_field1 if record.custom_fields.custom_label1
         data['CustomFields']['CustomField2'] = record.custom_fields.custom_field2 if record.custom_fields.custom_label2
         data['CustomFields']['CustomField3'] = record.custom_fields.custom_field3 if record.custom_fields.custom_label3
-        data.delete('CustomFields') if data['CustomFields'].empty?
+        remove_empty!(data)
         data.to_xml(options)
       end
     end

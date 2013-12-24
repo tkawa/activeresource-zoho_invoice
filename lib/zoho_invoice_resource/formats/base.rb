@@ -36,6 +36,20 @@ module ZohoInvoiceResource
         end
       end
 
+      private
+
+      def remove_empty!(hash)
+        hash.each do |key, value|
+          case value
+          when Hash
+            remove_empty!(value)
+          when Array
+            value.compact!
+          end
+          hash.delete(key) if value.nil? || value == [] || value == {}
+        end
+      end
+
       def normalize_date(date)
         if date.match %r|\d{4}/\d{2}/\d{2}|
           date.tr('/', '-')

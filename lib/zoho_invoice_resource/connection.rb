@@ -1,9 +1,15 @@
 module ZohoInvoiceResource
   class Connection < ActiveResource::Connection
-    DEBUG = true
+    DEBUG = false
     def http
       configure_http(new_http).tap do |h|
-        h.set_debug_output($stderr) if DEBUG
+        if DEBUG
+          if h.respond_to?(:set_debug_output)
+            h.set_debug_output($stderr)
+          elsif h.respond_to?(:debug_output=) # for ActiveResource::Persistent::HTTP
+            h.debug_output = $stderr
+          end
+        end
       end
     end
 

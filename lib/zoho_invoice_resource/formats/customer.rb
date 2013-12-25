@@ -36,9 +36,18 @@ module ZohoInvoiceResource
           }
           data['Contacts'] << item
         end if record.contacts
-        data['CustomFields']['CustomFieldValue1'] = record.custom_fields.custom_field_value1 if record.custom_fields.custom_field_label1
-        data['CustomFields']['CustomFieldValue2'] = record.custom_fields.custom_field_value2 if record.custom_fields.custom_field_label2
-        data['CustomFields']['CustomFieldValue3'] = record.custom_fields.custom_field_value3 if record.custom_fields.custom_field_label3
+        if record.custom_fields.custom_field_label1
+          data['CustomFields']['CustomFieldLabel1'] = record.custom_fields.custom_field_label1
+          data['CustomFields']['CustomFieldValue1'] = record.custom_fields.custom_field_value1
+        end
+        if record.custom_fields.custom_field_label2
+          data['CustomFields']['CustomFieldLabel2'] = record.custom_fields.custom_field_label2
+          data['CustomFields']['CustomFieldValue2'] = record.custom_fields.custom_field_value2
+        end
+        if record.custom_fields.custom_field_label3
+          data['CustomFields']['CustomFieldLabel3'] = record.custom_fields.custom_field_label3
+          data['CustomFields']['CustomFieldValue3'] = record.custom_fields.custom_field_value3
+        end
         remove_empty!(data)
         data.to_xml(options)
       end

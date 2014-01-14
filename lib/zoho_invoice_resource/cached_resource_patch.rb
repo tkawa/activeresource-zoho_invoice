@@ -11,6 +11,10 @@ module ZohoInvoiceResource
         object
       end
 
+      def cache_delete(key)
+        cached_resource.cache.delete(key)
+      end
+
       def cache_exist?(key)
         cached_resource.cache.exist?(key)
       end

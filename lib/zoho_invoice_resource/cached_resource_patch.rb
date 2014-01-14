@@ -4,19 +4,19 @@ module ZohoInvoiceResource
 
     module ClassMethods
       # override
-      def cache_read(key)
-        object = cached_resource.cache.read(key)
+      def cache_read(key, options = nil)
+        object = cached_resource.cache.read(key, options)
         # dupしないといけないのかも
         object && cached_resource.logger.info("#{CachedResource::Configuration::LOGGER_PREFIX} READ #{key}")
         object
       end
 
-      def cache_delete(key)
-        cached_resource.cache.delete(key)
+      def cache_delete(key, options = nil)
+        cached_resource.cache.delete(key, options)
       end
 
-      def cache_exist?(key)
-        cached_resource.cache.exist?(key)
+      def cache_exist?(key, options = nil)
+        cached_resource.cache.exist?(key, options)
       end
     end
 

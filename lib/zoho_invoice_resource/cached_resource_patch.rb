@@ -10,6 +10,10 @@ module ZohoInvoiceResource
         object && cached_resource.logger.info("#{CachedResource::Configuration::LOGGER_PREFIX} READ #{key}")
         object
       end
+
+      def cache_exist?(key)
+        cached_resource.cache.exist?(key)
+      end
     end
 
     def expire_cache

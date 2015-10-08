@@ -15,7 +15,8 @@ module ZohoInvoiceResource
           item = {
             'ItemID' => invoice_item.item_id,
             'ItemDescription' => invoice_item.item_description,
-            'Price' => invoice_item.price
+            'Price' => invoice_item.price,
+            'Quantity' => invoice_item.quantity
           }
           data['InvoiceItems'] << item
         end if record.invoice_items
